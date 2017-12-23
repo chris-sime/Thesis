@@ -6,28 +6,31 @@ using UnityEngine.UI;
 public class FirstActivity : MonoBehaviour {
 
     bool PhiliposCompleted = false;
-    bool FalaggaCompleted = false;
+    bool FalagaCompleted = false;
     bool HeroniaCompleted = false;
 
     public void SetPhiliposCompleted() { PhiliposCompleted = true; }
-    public void SetFalagaCompleted() { FalaggaCompleted = true; }
+    public void SetFalagaCompleted() { FalagaCompleted = true; }
     public void SetHeroniaCompleted() { HeroniaCompleted = true; }
 
     public GameObject InfoPanel;
+    public GameObject ContinueButton;
+    [Space]
     public GameObject[] GameObjects;
 
     public void OnClickInfoPanelButton()
     {
         InfoPanel.SetActive(false);
+        ContinueButton.SetActive(false);
         if (!PhiliposCompleted)
         {
             SetPhiliposCompleted();
         }
-        else if (!FalaggaCompleted)
+        else if (!FalagaCompleted)
         {
             SetFalagaCompleted();
         }
-        else
+        else if (!HeroniaCompleted)
         {
             SetHeroniaCompleted();
         }
@@ -37,10 +40,11 @@ public class FirstActivity : MonoBehaviour {
     {
         if (PhiliposCompleted)
         {
-            GameObjects[0].SetActive(false);
-            GameObjects[1].SetActive(true);
-            GameObjects[2].SetActive(true);
-            GameObjects[3].SetActive(true);
+            GameObjects[0].SetActive(false); //Philipos
+            GameObjects[1].SetActive(true);  //Peltastis
+            GameObjects[2].SetActive(true);  //Falagga
+            GameObjects[3].SetActive(true);  //Athanatos
+
             //GameObject.Find("").SetActive(true);
             //GameObject.Find("").SetActive(true);
             //GameObject.Find("").SetActive(true);

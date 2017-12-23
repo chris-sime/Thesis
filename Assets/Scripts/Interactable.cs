@@ -6,6 +6,8 @@ public class Interactable : MonoBehaviour {
 
     [SerializeField]
     public string _name;
+
     [SerializeField]
+    [TextArea(3, 10)]
     public string _info;
 }
