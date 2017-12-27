@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TouchOject : Interactable {
 
     [SerializeField]
-    bool CorrectAnswer;
+    bool isCorrectAnswer;
 
     Transform objectHit;
     RaycastHit hit;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        nameUI = InfoPanel.GetComponentsInChildren<Text>()[0];
+        infoUI = InfoPanel.GetComponentsInChildren<Text>()[1];
+
+        infoPanelEnabler = InfoPanel.GetComponent<ToggleEnable>();
+        continueButtonEnabler = ContinueButton.GetComponent<ToggleEnable>();
+    }
+
+
     void Update () {
         for (var i = 0; i < Input.touchCount; ++i)
         {
@@ -25,8 +35,14 @@ public class TouchOject : Interactable {
                     objectHit = hit.transform;
                     if (objectHit == this.transform)
                     {
-                        Debug.Log(objectHit.name);
-                        Destroy(gameObject);
+                        nameUI.text = objectName;
+                        infoUI.text = objectInfo;
+                        if (isCorrectAnswer)
+                        {
+                            infoPanelEnabler.Enable();
+                            continueButtonEnabler.Enable();
+                        }
+                        else { }//add animation for wrong guesses;
                     }
                 }
                     

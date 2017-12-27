@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PopUpObjectInfo : Interactable {
 
-    public GameObject InfoPanel;
-    public GameObject ContinueButton;
+public class PopUpObjectInfo : Interactable {
 
     Camera cam;  
     [SerializeField]
@@ -14,17 +12,13 @@ public class PopUpObjectInfo : Interactable {
     Transform objectHit;
     RaycastHit hit;
 
-    Text name;
-    Text info;
-    ToggleEnable infoPanelEnabler;
-    ToggleEnable continueButtonEnabler;
-
     // Use this for initialization
     void Start () {
         countdown = hoverTimeUntilPopUp;
         cam = FindObjectOfType<Camera>();
-        name = InfoPanel.GetComponentsInChildren<Text>()[0];
-        info = InfoPanel.GetComponentsInChildren<Text>()[1];
+
+        nameUI = InfoPanel.GetComponentsInChildren<Text>()[0];
+        infoUI = InfoPanel.GetComponentsInChildren<Text>()[1];
 
         infoPanelEnabler = InfoPanel.GetComponent<ToggleEnable>();
         continueButtonEnabler = ContinueButton.GetComponent<ToggleEnable>();
@@ -39,8 +33,8 @@ public class PopUpObjectInfo : Interactable {
             objectHit = hit.transform;
             if(objectHit == this.transform)
             {
-                name.text = _name;
-                info.text = _info;
+                nameUI.text = objectName;
+                infoUI.text = objectInfo;
                 countdown -= Time.deltaTime;
                 if(countdown < 0)
                 {
