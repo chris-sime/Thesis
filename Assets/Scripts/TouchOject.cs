@@ -11,8 +11,13 @@ public class TouchOject : Interactable {
     Transform objectHit;
     RaycastHit hit;
 
+
+    Animator animator;
+
     private void Start()
     {
+        animator = GetComponent<Animator>();
+
         nameUI = InfoPanel.GetComponentsInChildren<Text>()[0];
         infoUI = InfoPanel.GetComponentsInChildren<Text>()[1];
 
@@ -42,7 +47,10 @@ public class TouchOject : Interactable {
                             infoPanelEnabler.Enable();
                             continueButtonEnabler.Enable();
                         }
-                        else { }//add animation for wrong guesses;
+                        else
+                        {
+                            animator.SetTrigger("WrongWiggle");
+                        }
                     }
                 }
                     
