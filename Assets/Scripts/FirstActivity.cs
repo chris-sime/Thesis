@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FirstActivity : MonoBehaviour {
+public class FirstActivity : Activities {
 
     bool PhiliposCompleted = false;
     bool FalagaCompleted = false;
     bool ChearoneaCompleted = false;
 
+   
     public void SetPhiliposCompleted() { PhiliposCompleted = true; }
     public void SetFalagaCompleted() { FalagaCompleted = true; }
     public void SetChearoneaCompleted() { ChearoneaCompleted = true; }
 
-    public GameObject InfoPanel;
-    public GameObject ContinueButton;
-    [Space]
-    public GameObject[] GameObjects;
-
-
-    ToggleEnable infoPanelEnabler;
-    ToggleEnable continueButtonEnabler;
-
-    private void Start()
+    void Start()
     {
         infoPanelEnabler = InfoPanel.GetComponent<ToggleEnable>();
         continueButtonEnabler = ContinueButton.GetComponent<ToggleEnable>();
+        closeButtonEnabler = CloseButton.GetComponent<ToggleEnable>();
+
+        promptPanelEnabler = PromptPanel.GetComponent<ToggleEnable>();
+        okButtonEnabler = OkButton.GetComponent<ToggleEnable>();
+
+        ShowPrompts();
     }
 
     public void OnClickInfoPanelButton()
     {
         infoPanelEnabler.Disable();
         continueButtonEnabler.Disable();
+        closeButtonEnabler.Disable();
 
         if (!PhiliposCompleted)
         {
@@ -45,9 +44,44 @@ public class FirstActivity : MonoBehaviour {
         {
             SetChearoneaCompleted();
         }
+
+        ShowPrompts();
+    }
+    
+    public void OnClickPromptPanelButton()
+    {
+        promptPanelEnabler.Disable();
+        okButtonEnabler.Disable();
     }
 
     private void Update()
+    { 
+        ProgressActivity();
+    }
+
+    private void ShowPrompts()
+    {
+        if (!PhiliposCompleted)
+        {
+            PromptPanel.GetComponentsInChildren<Text>()[1].text = Promts[0];
+            promptPanelEnabler.Enable();
+            okButtonEnabler.Enable();
+        }
+        else if (!FalagaCompleted)
+        {
+            PromptPanel.GetComponentsInChildren<Text>()[1].text = Promts[1];
+            promptPanelEnabler.Enable();
+            okButtonEnabler.Enable();
+        }
+        else if (!ChearoneaCompleted)
+        {
+            PromptPanel.GetComponentsInChildren<Text>()[1].text = Promts[2];
+            promptPanelEnabler.Enable();
+            okButtonEnabler.Enable();
+        }
+    }
+
+    private void ProgressActivity()
     {
         if (PhiliposCompleted)
         {
@@ -69,5 +103,13 @@ public class FirstActivity : MonoBehaviour {
             GameObjects[5].SetActive(true);  //Stagira
             GameObjects[6].SetActive(true);  //Florina
         }
+        if (ChearoneaCompleted)
+        {
+            GameObjects[4].SetActive(false);  //Chearonea
+            GameObjects[5].SetActive(false);  //Stagira
+            GameObjects[6].SetActive(false);  //Florina
+            activityManager.NextActivity();
+        }
     }
 }
+

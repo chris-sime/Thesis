@@ -16,12 +16,15 @@ public class Interactable : MonoBehaviour {
     protected GameObject InfoPanel;
     [SerializeField]
     protected GameObject ContinueButton;
+    [SerializeField]
+    protected GameObject CloseButton;
 
     protected Text nameUI;
     protected Text infoUI;
 
     protected ToggleEnable infoPanelEnabler;
     protected ToggleEnable continueButtonEnabler;
+    protected ToggleEnable closeButtonEnabler;
 
     void Start()
     {

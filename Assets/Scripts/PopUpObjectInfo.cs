@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class PopUpObjectInfo : Interactable {
 
+    [SerializeField]
+    private bool isCorrectObject = true;
+
     Camera cam;  
     [SerializeField]
     float hoverTimeUntilPopUp = 1.5f;
@@ -22,6 +25,7 @@ public class PopUpObjectInfo : Interactable {
 
         infoPanelEnabler = InfoPanel.GetComponent<ToggleEnable>();
         continueButtonEnabler = ContinueButton.GetComponent<ToggleEnable>();
+        closeButtonEnabler = CloseButton.GetComponent<ToggleEnable>();
     }
 	
 	// Update is called once per frame
@@ -37,18 +41,28 @@ public class PopUpObjectInfo : Interactable {
                 infoUI.text = objectInfo;
                 countdown -= Time.deltaTime;
                 if(countdown < 0)
-                {
-                    infoPanelEnabler.Enable();
-                    continueButtonEnabler.Enable();
+                {                    
+                    if (isCorrectObject) //if it is the object we are looking for enable the ui and the continue
+                    {
+                        infoPanelEnabler.Enable();
+                        continueButtonEnabler.Enable();
+                        closeButtonEnabler.Enable();
+                    }
+                    else if(!isCorrectObject) //otherwise we enable only the close button to continue searching for the right object 
+                    {
+                        infoPanelEnabler.Enable();
+                        closeButtonEnabler.Enable();
+                    }
                 }
             }
         }
         else
         {
             countdown = hoverTimeUntilPopUp;
-            infoPanelEnabler.Disable();
-            continueButtonEnabler.Disable();
+            //infoPanelEnabler.Disable();
+            //continueButtonEnabler.Disable();
+            //closeButtonEnabler.Disable();
         }
-        
+
     }
 }
