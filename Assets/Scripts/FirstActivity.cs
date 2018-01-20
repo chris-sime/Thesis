@@ -63,19 +63,19 @@ public class FirstActivity : Activities {
     {
         if (!PhiliposCompleted)
         {
-            PromptPanel.GetComponentsInChildren<Text>()[1].text = Promts[0];
+            PromptPanel.GetComponentsInChildren<Text>()[1].text = Prompts[0];
             promptPanelEnabler.Enable();
             okButtonEnabler.Enable();
         }
         else if (!FalagaCompleted)
         {
-            PromptPanel.GetComponentsInChildren<Text>()[1].text = Promts[1];
+            PromptPanel.GetComponentsInChildren<Text>()[1].text = Prompts[1];
             promptPanelEnabler.Enable();
             okButtonEnabler.Enable();
         }
         else if (!ChearoneaCompleted)
         {
-            PromptPanel.GetComponentsInChildren<Text>()[1].text = Promts[2];
+            PromptPanel.GetComponentsInChildren<Text>()[1].text = Prompts[2];
             promptPanelEnabler.Enable();
             okButtonEnabler.Enable();
         }
@@ -96,8 +96,8 @@ public class FirstActivity : Activities {
         {
             //deactivate the objects of the completed phase of the activity
             GameObjects[1].SetActive(false);  //Peltastis
-            GameObjects[2].SetActive(false);  //Falagga
             GameObjects[3].SetActive(false);  //Athanatos
+
             //activate the objects required for the next phase of the activity
             GameObjects[4].SetActive(true);  //Chearonea
             GameObjects[5].SetActive(true);  //Stagira
@@ -108,6 +108,9 @@ public class FirstActivity : Activities {
             GameObjects[4].SetActive(false);  //Chearonea
             GameObjects[5].SetActive(false);  //Stagira
             GameObjects[6].SetActive(false);  //Florina
+            //Move Falagga to Chearonea position
+            GameObjects[2].transform.position = GameObjects[4].transform.position;
+
             activityManager.NextActivity();
         }
     }

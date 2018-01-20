@@ -12,7 +12,7 @@ public class Activities : MonoBehaviour {
     [Header("Prompt Panel")]
     public GameObject PromptPanel;
     public GameObject OkButton;
-    [TextArea][SerializeField] protected string[] Promts;
+    [TextArea][SerializeField] protected string[] Prompts;
 
     [Space]
     [Header("Activity Objects")]
