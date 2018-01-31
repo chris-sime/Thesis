@@ -30,6 +30,7 @@ public class PopUpObjectInfo : Interactable {
             objectHit = hit.transform;
             if(objectHit == this.transform)
             {
+                UIManager.instance.Indicator.fillAmount = countdown / hoverTimeUntilPopUp;
                 countdown -= Time.deltaTime;
                 if(countdown < 0)
                 {

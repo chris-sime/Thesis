@@ -21,6 +21,10 @@ public class UIManager : MonoBehaviour {
     [Space]
     public ToggleEnable promptBubble;
 
+    [Space]
+    [Header("General")]
+    public Image Indicator;
+
     public static UIManager instance = null;
     // Use this for initialization
     void Awake () {
