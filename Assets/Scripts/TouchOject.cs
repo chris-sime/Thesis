@@ -17,12 +17,6 @@ public class TouchOject : Interactable {
     private void Start()
     {
         animator = GetComponent<Animator>();
-
-        nameUI = InfoPanel.GetComponentsInChildren<Text>()[0];
-        infoUI = InfoPanel.GetComponentsInChildren<Text>()[1];
-
-        infoPanelEnabler = InfoPanel.GetComponent<ToggleEnable>();
-        continueButtonEnabler = ContinueButton.GetComponent<ToggleEnable>();
     }
 
 
@@ -40,20 +34,16 @@ public class TouchOject : Interactable {
                     objectHit = hit.transform;
                     if (objectHit == this.transform)
                     {
-                        nameUI.text = objectName;
-                        infoUI.text = objectInfo;
                         if (isCorrectAnswer)
                         {
-                            infoPanelEnabler.Enable();
-                            continueButtonEnabler.Enable();
+                            UIManager.instance.ShowInfoPanel(objectName, objectInfo, isCorrectAnswer);
                         }
                         else
                         {
                             animator.SetTrigger("WrongWiggle");
                         }
                     }
-                }
-                    
+                }       
             }
         }
     }

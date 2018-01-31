@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ToggleEnable : MonoBehaviour {
 
+    [SerializeField] bool startEnabled = false;
     private void Awake()
     {
-        gameObject.SetActive(false);
+        if(!startEnabled) gameObject.SetActive(false);
     }
 
     public void Enable()

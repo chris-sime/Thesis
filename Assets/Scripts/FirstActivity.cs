@@ -14,23 +14,16 @@ public class FirstActivity : Activities {
     public void SetFalagaCompleted() { FalagaCompleted = true; }
     public void SetChearoneaCompleted() { ChearoneaCompleted = true; }
 
+
+    private string promptInfo;
     void Start()
     {
-        infoPanelEnabler = InfoPanel.GetComponent<ToggleEnable>();
-        continueButtonEnabler = ContinueButton.GetComponent<ToggleEnable>();
-        closeButtonEnabler = CloseButton.GetComponent<ToggleEnable>();
-
-        promptPanelEnabler = PromptPanel.GetComponent<ToggleEnable>();
-        okButtonEnabler = OkButton.GetComponent<ToggleEnable>();
-
         ShowPrompts();
     }
 
     public void OnClickInfoPanelButton()
     {
-        infoPanelEnabler.Disable();
-        continueButtonEnabler.Disable();
-        closeButtonEnabler.Disable();
+        UIManager.instance.HideInfoPanel();
 
         if (!PhiliposCompleted)
         {
@@ -44,10 +37,10 @@ public class FirstActivity : Activities {
         {
             SetChearoneaCompleted();
         }
-
         ShowPrompts();
     }
     
+    //Probably remove later
     public void OnClickPromptPanelButton()
     {
         promptPanelEnabler.Disable();
@@ -63,22 +56,17 @@ public class FirstActivity : Activities {
     {
         if (!PhiliposCompleted)
         {
-            PromptPanel.GetComponentsInChildren<Text>()[1].text = Prompts[0];
-            promptPanelEnabler.Enable();
-            okButtonEnabler.Enable();
+            promptInfo = Prompts[0];
         }
         else if (!FalagaCompleted)
         {
-            PromptPanel.GetComponentsInChildren<Text>()[1].text = Prompts[1];
-            promptPanelEnabler.Enable();
-            okButtonEnabler.Enable();
+            promptInfo = Prompts[1];
         }
         else if (!ChearoneaCompleted)
         {
-            PromptPanel.GetComponentsInChildren<Text>()[1].text = Prompts[2];
-            promptPanelEnabler.Enable();
-            okButtonEnabler.Enable();
+            promptInfo = Prompts[2];
         }
+        UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
     }
 
     private void ProgressActivity()
