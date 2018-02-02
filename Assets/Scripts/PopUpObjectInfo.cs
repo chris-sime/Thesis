@@ -17,7 +17,7 @@ public class PopUpObjectInfo : Interactable {
 
     // Use this for initialization
     void Start () {
-        countdown = hoverTimeUntilPopUp;
+        countdown = 0;
         cam = FindObjectOfType<Camera>();
     }
 	
@@ -30,9 +30,9 @@ public class PopUpObjectInfo : Interactable {
             objectHit = hit.transform;
             if(objectHit == this.transform)
             {
-                UIManager.instance.Indicator.fillAmount = countdown / hoverTimeUntilPopUp;
-                countdown -= Time.deltaTime;
-                if(countdown < 0)
+                UIManager.instance.FillIndicator(hoverTimeUntilPopUp, countdown);
+                countdown += Time.deltaTime;
+                if(countdown >= hoverTimeUntilPopUp)
                 {
                     UIManager.instance.ShowInfoPanel(objectName, objectInfo, isCorrectObject);
                 }
@@ -40,7 +40,12 @@ public class PopUpObjectInfo : Interactable {
         }
         else
         {
-            countdown = hoverTimeUntilPopUp;
+            while (countdown >= 0)
+            {
+                countdown -= Time.deltaTime;
+                UIManager.instance.FillIndicator(hoverTimeUntilPopUp, countdown);
+            }
+            
         }
     }
 }

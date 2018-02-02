@@ -23,20 +23,30 @@ public class UIManager : MonoBehaviour {
 
     [Space]
     [Header("General")]
-    public Image Indicator;
+    public Image indicator;
 
     public static UIManager instance = null;
     // Use this for initialization
-    void Awake () {
+    void Awake() {
         if (instance == null) instance = this;
         else if (instance != this) Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update() {
+
+    }
+    public void FillIndicator(float timeToFill, float currentTime)
+    {
+        Debug.Log(currentTime / timeToFill);
+        indicator.fillAmount = currentTime / timeToFill;
+
+    }
+    public void ResetIndicator(){
+        indicator.fillAmount = 0;
+    }
+
 
     public void ShowInfoPanel(string name, string info, bool isCorrect)
     {
@@ -49,6 +59,7 @@ public class UIManager : MonoBehaviour {
         }
         infoPanel.Enable();
         promptBubble.Disable();
+        ResetIndicator();
     }
     public void HideInfoPanel()
     {
@@ -56,6 +67,7 @@ public class UIManager : MonoBehaviour {
         closeButton.enabled = false;
         infoPanel.Disable();
         promptBubble.Enable();
+        ResetIndicator();
     }
 
     public void ShowPromptPanel(string name, string info)
@@ -63,9 +75,11 @@ public class UIManager : MonoBehaviour {
         promptPanelName.text = name;
         promptPanelInfo.text = info;
         promptPanel.Enable();
+        ResetIndicator();
     }
     public void HidePromptPanel()
     {
         infoPanel.Disable();
+        ResetIndicator();
     }
 }
