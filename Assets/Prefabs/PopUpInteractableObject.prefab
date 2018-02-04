@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4935790030907274}
   - component: {fileID: 114925429011912544}
   - component: {fileID: 65842109993269716}
+  - component: {fileID: 114353846675000768}
   m_Layer: 0
   m_Name: PopUpInteractableObject
   m_TagString: Untagged
@@ -82,6 +83,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.33, z: 0.33}
   m_Center: {x: 0, y: 0.16, z: 0}
+--- !u!114 &114353846675000768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1507481024874730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78694d42cf8dd9f42b85079337b208fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleSetter: {fileID: 11400000, guid: e4d7ba0708c0b9143ac23506f7fc613d, type: 2}
 --- !u!114 &114925429011912544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,8 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3838befb8e6e740a4cdc1c1cb6fc5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: NamePlaceholder
-  _info: InfoPlaceholder
-  InfoPanel: {fileID: 1655350344033302, guid: 9f7b2b7f8298f7446a364399ca0dd9f7, type: 2}
-  ContinueButton: {fileID: 0}
+  objectName: 
+  objectInfo: 
+  isCorrectObject: 1
   hoverTimeUntilPopUp: 1.5

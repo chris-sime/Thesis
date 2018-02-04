@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4345732470310352}
   - component: {fileID: 65225533257203374}
   - component: {fileID: 114853487811143412}
+  - component: {fileID: 114461495195228696}
   m_Layer: 0
   m_Name: TouchInteractable
   m_TagString: Untagged
@@ -82,6 +83,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3870237, y: 0.42746907, z: 0.43357953}
   m_Center: {x: -0.00556918, y: 0.24968031, z: -0.12729114}
+--- !u!114 &114461495195228696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1142907738541168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78694d42cf8dd9f42b85079337b208fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleSetter: {fileID: 11400000, guid: e4d7ba0708c0b9143ac23506f7fc613d, type: 2}
 --- !u!114 &114853487811143412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678aff9c46de723439dd420981617d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Name Placeholder
-  _info: Info Placeholder
-  CorrectAnswer: 0
+  objectName: 
+  objectInfo: 
+  isCorrectAnswer: 0

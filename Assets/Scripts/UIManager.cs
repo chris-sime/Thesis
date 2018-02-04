@@ -39,9 +39,7 @@ public class UIManager : MonoBehaviour {
     }
     public void FillIndicator(float timeToFill, float currentTime)
     {
-        Debug.Log(currentTime / timeToFill);
         indicator.fillAmount = currentTime / timeToFill;
-
     }
     public void ResetIndicator(){
         indicator.fillAmount = 0;
