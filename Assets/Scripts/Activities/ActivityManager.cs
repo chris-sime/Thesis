@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class ActivityManager : MonoBehaviour {
 
-    public int currentActivity;
+    int currentActivity;
 
     [SerializeField]
     private GameObject[] Activites;
 
 
 	void Start () {
-        if(currentActivity == null)
-        {
-            currentActivity = 0;
-        }
-
+        currentActivity = PlayerPrefs.GetInt("Activity");
         foreach (var activity in Activites)
         {
             activity.SetActive(false);
