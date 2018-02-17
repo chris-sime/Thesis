@@ -15,7 +15,7 @@ public class FirstActivity : Activities {
     public void SetChearoneaCompleted() { ChearoneaCompleted = true; }
 
 
-    private string promptInfo;
+    
     void Start()
     {
         ShowPrompts();
@@ -97,7 +97,7 @@ public class FirstActivity : Activities {
             GameObjects[5].SetActive(false);  //Stagira
             GameObjects[6].SetActive(false);  //Florina
             //Move Falagga to Chearonea position
-            GameObjects[2].transform.position = GameObjects[4].transform.position;
+            GameObjects[2].transform.position = Vector3.Lerp(GameObjects[2].transform.position, GameObjects[4].transform.position, Time.deltaTime * 10);
 
             activityManager.NextActivity();
         }

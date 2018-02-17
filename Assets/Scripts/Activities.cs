@@ -27,6 +27,7 @@ public class Activities : MonoBehaviour {
     protected ToggleEnable okButtonEnabler;
 
     protected ActivityManager activityManager;
+    protected string promptInfo;
 
     private void Start()
     {

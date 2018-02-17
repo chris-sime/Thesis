@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class ActivityManager : MonoBehaviour {
 
-    public int CurrentActivity { get; set; }
+    public int currentActivity;
 
     [SerializeField]
     private GameObject[] Activites;
 
 
 	void Start () {
-        CurrentActivity = 0;
+        if(currentActivity == null)
+        {
+            currentActivity = 0;
+        }
+
         foreach (var activity in Activites)
         {
             activity.SetActive(false);
         }
-        Activites[CurrentActivity].SetActive(true);
+        Activites[currentActivity].SetActive(true);
     }
 
     public void NextActivity()
     {
-        Activites[CurrentActivity].SetActive(false);
-        CurrentActivity++;
-        Activites[CurrentActivity].SetActive(true);
+        Activites[currentActivity].SetActive(false);
+        currentActivity++;
+        Activites[currentActivity].SetActive(true);
     }
 }

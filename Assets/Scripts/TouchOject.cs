@@ -37,6 +37,7 @@ public class TouchOject : Interactable {
                         if (isCorrectAnswer)
                         {
                             UIManager.instance.ShowInfoPanel(objectName, objectInfo, isCorrectAnswer);
+                            gameObject.GetComponent<TouchOject>().enabled = false;
                         }
                         else
                         {
