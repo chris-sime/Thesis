@@ -21,8 +21,8 @@ public class ActivityManager : MonoBehaviour {
 
     public void NextActivity()
     {
-        Activites[currentActivity].SetActive(false);
-        currentActivity++;
-        Activites[currentActivity].SetActive(true);
+        Activites[PlayerPrefs.GetInt("Activity")].SetActive(false);
+        PlayerPrefs.SetInt("Activity", PlayerPrefs.GetInt("Activity") + 1);
+        Activites[PlayerPrefs.GetInt("Activity")].SetActive(true);
     }
 }

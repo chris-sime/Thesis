@@ -28,15 +28,38 @@ public class DragableObject : Interactable {
 	void Update ()
     {
         DragObject();
+        ShowName();
     }
 
+    private void ShowName()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2, 0));
 
-    private void OnTriggerStay(Collider coll)
+        if (Physics.Raycast(ray, out hit))
+        {
+            objectHit = hit.transform;
+            if (objectHit == this.transform)
+            {
+                UIManager.instance.ShowNameHeader(objectName);
+            }
+        }
+        else
+        {
+            UIManager.instance.HideNameHeader();
+        }
+    }
+
+    void OnTriggerEnter(Collider coll)
     {
         if (coll.transform.tag == "DropArea")
         {
             isDroppedinCorrectArea = true;
         }
+    }
+    private void OnTriggerExit(Collider coll)
+    {
+        if (coll.transform.tag == "DropArea")
+            isDroppedinCorrectArea = false;
     }
 
     private void DragObject()
@@ -60,6 +83,7 @@ public class DragableObject : Interactable {
             if ((Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary) && isDraging)
             {
                 // Construct a ray from the current touch coordinates
+                // raycast with layermask in order to hit only the helper plane
                 Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
                 {
@@ -72,7 +96,7 @@ public class DragableObject : Interactable {
             }
             if (Input.GetTouch(i).phase == TouchPhase.Ended)
             {
-                if (isDroppedinCorrectArea)
+                if (isDroppedinCorrectArea && isCorrectAnswer)
                 {
                     UIManager.instance.ShowInfoPanel(objectName, objectInfo, isCorrectAnswer);
                 }

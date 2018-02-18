@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,9 +22,16 @@ public class UIManager : MonoBehaviour {
     [Space]
     public ToggleEnable promptBubble;
 
+
     [Space]
     [Header("General")]
     public Image indicator;
+
+    [Space]
+    [Header("NameHeader")]
+    public ToggleEnable nameHeader;
+    public Text nameHeaderText;
+    
 
     public static UIManager instance = null;
     // Use this for initialization
@@ -33,10 +41,17 @@ public class UIManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update() {
-
+    public void ShowNameHeader(string name)
+    {
+        nameHeaderText.text = name;
+        nameHeader.Enable();
     }
+
+    public void HideNameHeader()
+    {
+        nameHeader.Disable();
+    }
+
     public void FillIndicator(float timeToFill, float currentTime)
     {
         indicator.fillAmount = currentTime / timeToFill;

@@ -15,7 +15,11 @@ public class FirstActivity : Activities {
     public void SetChearoneaCompleted() { ChearoneaCompleted = true; }
 
 
-    
+    private void Awake()
+    {
+        if (PlayerPrefs.GetInt("Activity") != 0) enabled = false;
+    }
+
     void Start()
     {
         ShowPrompts();
@@ -57,16 +61,19 @@ public class FirstActivity : Activities {
         if (!PhiliposCompleted)
         {
             promptInfo = Prompts[0];
+            StartCoroutine(ShowPromptAfterSeconds(0.1f));
         }
         else if (!FalagaCompleted)
         {
             promptInfo = Prompts[1];
+            StartCoroutine(ShowPromptAfterSeconds(0.1f));
         }
         else if (!ChearoneaCompleted)
         {
             promptInfo = Prompts[2];
+            StartCoroutine(ShowPromptAfterSeconds(2));
         }
-        UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
+        
     }
 
     private void ProgressActivity()
@@ -101,6 +108,12 @@ public class FirstActivity : Activities {
 
             activityManager.NextActivity();
         }
+    }
+
+    IEnumerator ShowPromptAfterSeconds(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
     }
 }
 
