@@ -2,58 +2,64 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragableObject : Interactable {
+public class DragAndDropObject : Interactable {
 
     Vector3 startingPosition;
     public GameObject planeDragHelper;
     Transform objectHit;
     RaycastHit hit;
 
-    //[SerializeField]
-    //private GameObject dropArea;
+    [SerializeField]
+    private GameObject dropArea;
 
     bool isDraging = false;
     bool isDroppedinCorrectArea = false;
-    bool hasStartedDraging = false;
 
     LayerMask layerMask = 1 << 8;
-    
-    
+
+    // Use this for initialization
     void Start () {
         startingPosition = transform.position;
+    }
+	
+	// Update is called once per frame
+	void Update ()
+    {
+        DragObject();
+        ShowName();
+    }
+
+    private void ShowName()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2, 0));
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            objectHit = hit.transform;
+            if (objectHit == transform)
+            {
+                UIManager.instance.ShowNameHeader(objectName);
+            }
+            if (objectHit == planeDragHelper.transform)
+            {
+                UIManager.instance.HideNameHeader();      
+            }
+        }
     }
 
     void OnTriggerEnter(Collider coll)
     {
-        if (coll.transform.name == "Start")
+        if (coll.transform.tag == "DropArea")
         {
-            hasStartedDraging = true;
+            isDroppedinCorrectArea = true;
         }
-        if (coll.transform.tag == "Trail" && hasStartedDraging)
-        {
-            isDraging = true;
-            if (coll.transform.name == "End")
-            {
-                isDroppedinCorrectArea = true;
-            }
-        }       
     }
 
     private void OnTriggerExit(Collider coll)
     {
-        if (coll.transform.tag == "Trail")
-        {
-            transform.position = startingPosition;
-            isDraging = false;
-        }
-            
+        if (coll.transform.tag == "DropArea")
+            isDroppedinCorrectArea = false;
     }
-
-    // Update is called once per frame
-    void Update () {
-        DragObject();
-    }
-
 
     private void DragObject()
     {
@@ -67,12 +73,13 @@ public class DragableObject : Interactable {
                 {
                     objectHit = hit.transform;
                     if (objectHit == this.transform)
-                    { 
+                    {
+                        isDraging = true;
                         transform.position = new Vector3(transform.position.x, transform.position.y + 40, transform.position.z);
                     }
                 }
             }
-            if ((Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary))
+            if ((Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary) && isDraging)
             {
                 // Construct a ray from the current touch coordinates
                 // raycast with layermask in order to hit only the helper plane
@@ -88,13 +95,12 @@ public class DragableObject : Interactable {
             }
             if (Input.GetTouch(i).phase == TouchPhase.Ended)
             {
-                if (isDroppedinCorrectArea)
+                if (isDroppedinCorrectArea && isCorrectAnswer)
                 {
-                    UIManager.instance.ShowInfoPanel(objectName, objectInfo, true);
+                    UIManager.instance.ShowInfoPanel(objectName, objectInfo, isCorrectAnswer);
                 }
-                else if (hasStartedDraging)
+                else if(isDraging)
                 {
-                    hasStartedDraging = false;
                     isDraging = false;
                     transform.position = startingPosition;
                 }

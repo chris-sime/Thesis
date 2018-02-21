@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class TouchOject : Interactable {
 
-    [SerializeField]
-    bool isCorrectAnswer;
-
     Transform objectHit;
     RaycastHit hit;
 

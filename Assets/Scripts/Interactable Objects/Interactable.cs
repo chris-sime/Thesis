@@ -11,4 +11,7 @@ public class Interactable : MonoBehaviour {
     [SerializeField]
     [TextArea(3, 10)]
     protected string objectInfo;
+
+    [SerializeField]
+    protected bool isCorrectAnswer = true;
 }

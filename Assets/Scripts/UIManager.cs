@@ -43,8 +43,8 @@ public class UIManager : MonoBehaviour {
 
     public void ShowNameHeader(string name)
     {
-        nameHeaderText.text = name;
         nameHeader.Enable();
+        nameHeaderText.text = name;
     }
 
     public void HideNameHeader()

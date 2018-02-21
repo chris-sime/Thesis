@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class PopUpObjectInfo : Interactable {
 
-    [SerializeField]
-    private bool isCorrectObject = true;
 
     [SerializeField]
     float hoverTimeUntilPopUp = 1.5f;
@@ -32,18 +30,14 @@ public class PopUpObjectInfo : Interactable {
                 countdown += Time.deltaTime;
                 if(countdown >= hoverTimeUntilPopUp)
                 {
-                    UIManager.instance.ShowInfoPanel(objectName, objectInfo, isCorrectObject);
+                    UIManager.instance.ShowInfoPanel(objectName, objectInfo, isCorrectAnswer);
                 }
             }
-        }
-        else
-        {
-            while (countdown > 0)
+            else
             {
                 countdown = 0;
                 UIManager.instance.ResetIndicator();
             }
-            
-        }
+        }        
     }
 }

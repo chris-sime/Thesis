@@ -88,7 +88,11 @@ public class SecondActivity : Activities {
             GameObjects[0].SetActive(false);  //Makedonikos tafos
             GameObjects[1].SetActive(false);  //Philipos
             GameObjects[2].SetActive(false);  //Darios
-            //TODO: Set Aristotelis position at Mieza
+            
+            GameObjects[3].transform.position = GameObjects[4].transform.position; //Set Aristotelis position at Mieza
+            GameObjects[5].SetActive(true); //Trail to Mieza
+            GameObjects[6].SetActive(true); //Alexander
+
         }
         if (FollowPathToMiezaCompleted)
         {
