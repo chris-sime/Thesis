@@ -9,6 +9,7 @@ public class DragableObject : Interactable {
     Transform objectHit;
     RaycastHit hit;
 
+    int trailCountHelper = 0;
     //[SerializeField]
     //private GameObject dropArea;
 
@@ -28,25 +29,24 @@ public class DragableObject : Interactable {
         if (coll.transform.name == "Start")
         {
             hasStartedDraging = true;
+            trailCountHelper++;
         }
         if (coll.transform.tag == "Trail" && hasStartedDraging)
         {
-            isDraging = true;
-            if (coll.transform.name == "End")
-            {
-                isDroppedinCorrectArea = true;
-            }
-        }       
+            trailCountHelper++;
+        }
+        if (coll.transform.name == "End" && hasStartedDraging)
+        {
+            isDroppedinCorrectArea = true;
+        }
     }
 
     private void OnTriggerExit(Collider coll)
     {
-        if (coll.transform.tag == "Trail")
+        if (coll.transform.tag == "Trail" || coll.transform.name == "Start")
         {
-            transform.position = startingPosition;
-            isDraging = false;
+            trailCountHelper--;
         }
-            
     }
 
     // Update is called once per frame
@@ -57,6 +57,10 @@ public class DragableObject : Interactable {
 
     private void DragObject()
     {
+        if (isDroppedinCorrectArea)
+        {
+            UIManager.instance.ShowInfoPanel(objectName, objectInfo, true);
+        }
         for (var i = 0; i < Input.touchCount; ++i)
         {
             if (Input.GetTouch(i).phase == TouchPhase.Began)
@@ -67,12 +71,13 @@ public class DragableObject : Interactable {
                 {
                     objectHit = hit.transform;
                     if (objectHit == this.transform)
-                    { 
+                    {
+                        isDraging = true;
                         transform.position = new Vector3(transform.position.x, transform.position.y + 40, transform.position.z);
                     }
                 }
             }
-            if ((Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary))
+            if ((Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary) && isDraging)
             {
                 // Construct a ray from the current touch coordinates
                 // raycast with layermask in order to hit only the helper plane
@@ -84,20 +89,21 @@ public class DragableObject : Interactable {
                     {
                         transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime * 100);
                     }
+                    if (hasStartedDraging)
+                    {
+                        if (trailCountHelper < 1)
+                        {
+                            isDraging = false;
+                            transform.position = startingPosition;
+                            hasStartedDraging = false;
+                        }
+                    }
                 }
             }
-            if (Input.GetTouch(i).phase == TouchPhase.Ended)
+            if((Input.GetTouch(i).phase == TouchPhase.Ended))
             {
-                if (isDroppedinCorrectArea)
-                {
-                    UIManager.instance.ShowInfoPanel(objectName, objectInfo, true);
-                }
-                else if (hasStartedDraging)
-                {
-                    hasStartedDraging = false;
-                    isDraging = false;
-                    transform.position = startingPosition;
-                }
+                isDraging = false;
+                transform.position = startingPosition;
             }
         }
     }

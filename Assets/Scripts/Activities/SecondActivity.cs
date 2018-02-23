@@ -47,17 +47,17 @@ public class SecondActivity : Activities {
         if (!MacedonianTulumusCompleted)
         {
             promptInfo = Prompts[0];
-            StartCoroutine(ShowPromptAfterSeconds(0.1f));
+            StartCoroutine(ShowPromptAfterSeconds(1f));
         }
         else if (!PhiliposIsDropedInTulumusCompleted)
         {
             promptInfo = Prompts[1];
-            StartCoroutine(ShowPromptAfterSeconds(0.1f));
+            StartCoroutine(ShowPromptAfterSeconds(1f));
         }
         else if (!FollowPathToMiezaCompleted)
         {
             promptInfo = Prompts[2];
-            StartCoroutine(ShowPromptAfterSeconds(0.1f));
+            StartCoroutine(ShowPromptAfterSeconds(1f));
         }
     }
 
@@ -96,7 +96,7 @@ public class SecondActivity : Activities {
         }
         if (FollowPathToMiezaCompleted)
         {
-            //TODO: develop 3rd phase
+            GameObjects[6].transform.position = GameObjects[7].transform.position;
             activityManager.NextActivity();
         }
     }
