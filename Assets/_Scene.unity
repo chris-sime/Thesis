@@ -2898,7 +2898,7 @@ Prefab:
     - target: {fileID: 114435617350251044, guid: d359058de8dea7f4e8f8ec23a82a9b47,
         type: 2}
       propertyPath: objectName
-      value: "\u03A3\u03C9\u03C3\u03C4\u03AC!!!"
+      value: "\u03A6\u03AF\u03BB\u03B9\u03C0\u03C0\u03BF\u03C2"
       objectReference: {fileID: 0}
     - target: {fileID: 114435617350251044, guid: d359058de8dea7f4e8f8ec23a82a9b47,
         type: 2}

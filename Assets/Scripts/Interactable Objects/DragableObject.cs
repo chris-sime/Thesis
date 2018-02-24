@@ -15,7 +15,7 @@ public class DragableObject : Interactable {
 
     bool isDraging = false;
     bool isDroppedinCorrectArea = false;
-    bool hasStartedDraging = false;
+    bool hasStartedTheTrail = false;
 
     LayerMask layerMask = 1 << 8;
     
@@ -28,22 +28,24 @@ public class DragableObject : Interactable {
     {
         if (coll.transform.name == "Start")
         {
-            hasStartedDraging = true;
+            hasStartedTheTrail = true;
             trailCountHelper++;
         }
-        if (coll.transform.tag == "Trail" && hasStartedDraging)
+        if (coll.transform.tag == "Trail")
         {
-            trailCountHelper++;
+            if (!hasStartedTheTrail) transform.position = startingPosition;
+            else trailCountHelper++;
         }
-        if (coll.transform.name == "End" && hasStartedDraging)
+        if (coll.transform.name == "End")
         {
-            isDroppedinCorrectArea = true;
+            if (!hasStartedTheTrail) transform.position = startingPosition;
+            else isDroppedinCorrectArea = true;
         }
     }
 
     private void OnTriggerExit(Collider coll)
     {
-        if (coll.transform.tag == "Trail" || coll.transform.name == "Start")
+        if ((coll.transform.tag == "Trail" || coll.transform.name == "Start") && hasStartedTheTrail)
         {
             trailCountHelper--;
         }
@@ -89,13 +91,22 @@ public class DragableObject : Interactable {
                     {
                         transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime * 100);
                     }
-                    if (hasStartedDraging)
+                    if (hasStartedTheTrail)
                     {
                         if (trailCountHelper < 1)
                         {
                             isDraging = false;
                             transform.position = startingPosition;
-                            hasStartedDraging = false;
+                            hasStartedTheTrail = false;
+                        }
+                    }
+                    else
+                    {
+                        if(trailCountHelper > 0)
+                        {
+                            isDraging = false;
+                            transform.position = startingPosition;
+                            trailCountHelper = 0;
                         }
                     }
                 }
