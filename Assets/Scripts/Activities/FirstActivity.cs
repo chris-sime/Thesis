@@ -14,12 +14,6 @@ public class FirstActivity : Activities {
     public void SetFalagaCompleted() { FalagaCompleted = true; }
     public void SetChearoneaCompleted() { ChearoneaCompleted = true; }
 
-
-    private void Awake()
-    {
-        if (PlayerPrefs.GetInt("Activity") != 0) enabled = false;
-    }
-
     void Start()
     {
         ShowPrompts();
@@ -72,9 +66,9 @@ public class FirstActivity : Activities {
         {
             promptInfo = Prompts[2];
             StartCoroutine(ShowPromptAfterSeconds(2));
-        }
-        
+        }  
     }
+
 
     private void ProgressActivity()
     {

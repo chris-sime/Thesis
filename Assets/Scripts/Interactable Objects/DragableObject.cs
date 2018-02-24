@@ -62,6 +62,7 @@ public class DragableObject : Interactable {
         if (isDroppedinCorrectArea)
         {
             UIManager.instance.ShowInfoPanel(objectName, objectInfo, true);
+            this.enabled = false;
         }
         for (var i = 0; i < Input.touchCount; ++i)
         {

@@ -13,10 +13,6 @@ public class SecondActivity : Activities {
     public void SetPhiliposIsDropedInTulumusCompleted() { PhiliposIsDropedInTulumusCompleted = true; }
     public void SetFollowPathToMiezaCompleted() { FollowPathToMiezaCompleted = true; }
 
-    private void Awake()
-    {
-        if (PlayerPrefs.GetInt("Activity") != 1) enabled = false;
-    }
 
     void Start()
     {
@@ -42,25 +38,7 @@ public class SecondActivity : Activities {
         ShowPrompts();
     }
 
-    private void ShowPrompts()
-    {
-        if (!MacedonianTulumusCompleted)
-        {
-            promptInfo = Prompts[0];
-            StartCoroutine(ShowPromptAfterSeconds(1f));
-        }
-        else if (!PhiliposIsDropedInTulumusCompleted)
-        {
-            promptInfo = Prompts[1];
-            StartCoroutine(ShowPromptAfterSeconds(1f));
-        }
-        else if (!FollowPathToMiezaCompleted)
-        {
-            promptInfo = Prompts[2];
-            StartCoroutine(ShowPromptAfterSeconds(1f));
-        }
-    }
-
+    //Probably remove later
     public void OnClickPromptPanelButton()
     {
         promptPanelEnabler.Disable();
@@ -71,6 +49,26 @@ public class SecondActivity : Activities {
     {
         ProgressActivity();
     }
+
+    private void ShowPrompts()
+    {
+        if (!MacedonianTulumusCompleted)
+        {
+            promptInfo = Prompts[0];
+            StartCoroutine(ShowPromptAfterSeconds(0.1f));
+        }
+        else if (!PhiliposIsDropedInTulumusCompleted)
+        {
+            promptInfo = Prompts[1];
+            StartCoroutine(ShowPromptAfterSeconds(0.1f));
+        }
+        else if (!FollowPathToMiezaCompleted)
+        {
+            promptInfo = Prompts[2];
+            StartCoroutine(ShowPromptAfterSeconds(0.1f));
+        }
+    }
+
 
     private void ProgressActivity()
     {
@@ -100,6 +98,7 @@ public class SecondActivity : Activities {
             activityManager.NextActivity();
         }
     }
+
     IEnumerator ShowPromptAfterSeconds(float sec)
     {
         yield return new WaitForSeconds(sec);

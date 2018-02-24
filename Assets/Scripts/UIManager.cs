@@ -74,6 +74,7 @@ public class UIManager : MonoBehaviour {
         promptBubble.Disable();
         ResetIndicator();
     }
+
     public void HideInfoPanel()
     {
         continueButton.enabled = false;
