@@ -32,5 +32,6 @@ public class Activities : MonoBehaviour {
     private void Start()
     {
         activityManager = GetComponent<ActivityManager>();
+        promptInfo = "";
     }
 }

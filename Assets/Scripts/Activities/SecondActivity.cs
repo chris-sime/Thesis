@@ -16,6 +16,7 @@ public class SecondActivity : Activities {
 
     void Start()
     {
+        if (PlayerPrefs.GetInt("Activity") != 1) enabled = false;
         ShowPrompts();
     }
 
@@ -67,6 +68,7 @@ public class SecondActivity : Activities {
             promptInfo = Prompts[2];
             StartCoroutine(ShowPromptAfterSeconds(0.1f));
         }
+        UIManager.instance.ShowPromptPanel("Δραστηριότητα 2η:", promptInfo);
     }
 
 
@@ -79,6 +81,7 @@ public class SecondActivity : Activities {
             GameObjects[2].SetActive(true);  //Darios
             GameObjects[3].SetActive(true);  //Aristotelis
             GameObjects[0].GetComponent<PopUpObjectInfo>().enabled = false;
+            
         }
         if (PhiliposIsDropedInTulumusCompleted)
         {
@@ -96,12 +99,14 @@ public class SecondActivity : Activities {
         {
             GameObjects[6].transform.position = GameObjects[7].transform.position;
             activityManager.NextActivity();
+            
         }
+        
     }
 
     IEnumerator ShowPromptAfterSeconds(float sec)
     {
         yield return new WaitForSeconds(sec);
-        UIManager.instance.ShowPromptPanel("Δραστηριότητα 2η:", promptInfo);
+        //UIManager.instance.ShowPromptPanel("Δραστηριότητα 2η:", promptInfo);
     }
 }

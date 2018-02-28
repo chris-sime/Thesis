@@ -10,7 +10,7 @@ public class Settings : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-		
+        PlayerPrefs.DeleteAll();
 	}
 	
 	// Update is called once per frame

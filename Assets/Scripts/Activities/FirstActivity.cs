@@ -16,6 +16,7 @@ public class FirstActivity : Activities {
 
     void Start()
     {
+        if (PlayerPrefs.GetInt("Activity") != 0) enabled = false;
         ShowPrompts();
     }
 
@@ -66,7 +67,8 @@ public class FirstActivity : Activities {
         {
             promptInfo = Prompts[2];
             StartCoroutine(ShowPromptAfterSeconds(2));
-        }  
+        }
+        UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
     }
 
 
@@ -107,7 +109,7 @@ public class FirstActivity : Activities {
     IEnumerator ShowPromptAfterSeconds(float sec)
     {
         yield return new WaitForSeconds(sec);
-        UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
+        //UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
     }
 }
 
