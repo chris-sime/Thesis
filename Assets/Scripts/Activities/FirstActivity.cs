@@ -16,8 +16,7 @@ public class FirstActivity : Activities {
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("Activity") != 0) enabled = false;
-        ShowPrompts();
+        if (PlayerPrefs.GetInt("Activity") == 0) ShowPrompts();
     }
 
     public void OnClickInfoPanelButton()
@@ -27,16 +26,19 @@ public class FirstActivity : Activities {
         if (!PhiliposCompleted)
         {
             SetPhiliposCompleted();
+            ShowPrompts();
         }
         else if (!FalagaCompleted)
         {
             SetFalagaCompleted();
+            ShowPrompts();
         }
         else if (!ChearoneaCompleted)
         {
             SetChearoneaCompleted();
+            ShowPrompts();
         }
-        ShowPrompts();
+        
     }
     
     //Probably remove later
@@ -68,9 +70,7 @@ public class FirstActivity : Activities {
             promptInfo = Prompts[2];
             StartCoroutine(ShowPromptAfterSeconds(2));
         }
-        UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
     }
-
 
     private void ProgressActivity()
     {
@@ -109,7 +109,7 @@ public class FirstActivity : Activities {
     IEnumerator ShowPromptAfterSeconds(float sec)
     {
         yield return new WaitForSeconds(sec);
-        //UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
+        UIManager.instance.ShowPromptPanel("Δραστηριότητα 1η:", promptInfo);
     }
 }
 

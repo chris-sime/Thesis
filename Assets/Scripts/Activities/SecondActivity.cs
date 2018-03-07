@@ -16,8 +16,7 @@ public class SecondActivity : Activities {
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("Activity") != 1) enabled = false;
-        ShowPrompts();
+        if (PlayerPrefs.GetInt("Activity") == 1) ShowPrompts();
     }
 
     public void OnClickInfoPanelButton()
@@ -27,16 +26,19 @@ public class SecondActivity : Activities {
         if (!MacedonianTulumusCompleted)
         {
             SetMacedonianTulumusCompleted();
+            ShowPrompts();
         }
         else if (!PhiliposIsDropedInTulumusCompleted)
         {
             SetPhiliposIsDropedInTulumusCompleted();
+            ShowPrompts();
         }
         else if (!FollowPathToMiezaCompleted)
         {
             SetFollowPathToMiezaCompleted();
+            ShowPrompts();
         }
-        ShowPrompts();
+        
     }
 
     //Probably remove later
@@ -68,7 +70,6 @@ public class SecondActivity : Activities {
             promptInfo = Prompts[2];
             StartCoroutine(ShowPromptAfterSeconds(0.1f));
         }
-        UIManager.instance.ShowPromptPanel("Δραστηριότητα 2η:", promptInfo);
     }
 
 
@@ -107,6 +108,6 @@ public class SecondActivity : Activities {
     IEnumerator ShowPromptAfterSeconds(float sec)
     {
         yield return new WaitForSeconds(sec);
-        //UIManager.instance.ShowPromptPanel("Δραστηριότητα 2η:", promptInfo);
+        UIManager.instance.ShowPromptPanel("Δραστηριότητα 2η:", promptInfo);
     }
 }
