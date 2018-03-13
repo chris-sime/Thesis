@@ -13,10 +13,9 @@ public class SecondActivity : Activities {
     public void SetPhiliposIsDropedInTulumusCompleted() { PhiliposIsDropedInTulumusCompleted = true; }
     public void SetFollowPathToMiezaCompleted() { FollowPathToMiezaCompleted = true; }
 
-
-    void Start()
+    private void OnEnable()
     {
-        if (PlayerPrefs.GetInt("Activity") == 1) ShowPrompts();
+        ShowPrompts();
     }
 
     public void OnClickInfoPanelButton()
@@ -99,8 +98,9 @@ public class SecondActivity : Activities {
         if (FollowPathToMiezaCompleted)
         {
             GameObjects[6].transform.position = GameObjects[7].transform.position;
-            activityManager.NextActivity();
-            
+            activityManager.SetActivityCompleted(2);
+            UIManager.instance.ShowVictoryScreen();
+
         }
         
     }

@@ -31,15 +31,26 @@ public class UIManager : MonoBehaviour {
     [Header("NameHeader")]
     public ToggleEnable nameHeader;
     public Text nameHeaderText;
-    
+
+    [Space]
+    [Header("VictoryScreen")]
+    public ToggleEnable victoryScreen;
+    public Button backToMapButton;
+
 
     public static UIManager instance = null;
-    // Use this for initialization
     void Awake() {
         if (instance == null) instance = this;
         else if (instance != this) Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
+
+    public void ShowVictoryScreen()
+    {
+        promptBubble.Disable();
+        victoryScreen.Enable();
+    }
+
 
     public void ShowNameHeader(string name)
     {

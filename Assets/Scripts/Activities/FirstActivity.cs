@@ -14,10 +14,11 @@ public class FirstActivity : Activities {
     public void SetFalagaCompleted() { FalagaCompleted = true; }
     public void SetChearoneaCompleted() { ChearoneaCompleted = true; }
 
-    void Start()
+    private void OnEnable()
     {
-        if (PlayerPrefs.GetInt("Activity") == 0) ShowPrompts();
+        ShowPrompts();
     }
+
 
     public void OnClickInfoPanelButton()
     {
@@ -68,7 +69,7 @@ public class FirstActivity : Activities {
         else if (!ChearoneaCompleted)
         {
             promptInfo = Prompts[2];
-            StartCoroutine(ShowPromptAfterSeconds(2));
+            StartCoroutine(ShowPromptAfterSeconds(1f));
         }
     }
 
@@ -101,8 +102,11 @@ public class FirstActivity : Activities {
             GameObjects[6].SetActive(false);  //Florina
             //Move Falagga to Chearonea position
             GameObjects[2].transform.position = Vector3.Lerp(GameObjects[2].transform.position, GameObjects[4].transform.position, Time.deltaTime * 10);
-
-            activityManager.NextActivity();
+            if(GameObjects[2].transform.position == GameObjects[4].transform.position)
+            {
+                activityManager.SetActivityCompleted(1);
+                UIManager.instance.ShowVictoryScreen();
+            }
         }
     }
 

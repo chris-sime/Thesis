@@ -24,7 +24,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: unnamed
-    second: {fileID: 2100000, guid: 4528a997a086c6244938ae11ce13eb46, type: 2}
+    second: {fileID: 2100000, guid: b2c72ef035e5b874c97e121b5d37b67d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,6 +67,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
