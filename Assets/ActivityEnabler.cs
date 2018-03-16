@@ -14,9 +14,11 @@ public class ActivityEnabler : MonoBehaviour {
     Transform objectHit;
     RaycastHit hit;
 
+    ActivityManager activityManager;
     void Start()
     {
-        if(activityIdToEnable <= PlayerPrefs.GetInt("Activity"))
+        activityManager = FindObjectOfType<ActivityManager>();
+        if (activityIdToEnable <= PlayerPrefs.GetInt("Activity"))
         {
             enabledFlag.SetActive(true);
             disabledFlag.SetActive(false);
@@ -46,8 +48,7 @@ public class ActivityEnabler : MonoBehaviour {
                         //You can start the activity
                         if (enabledFlag.activeSelf)
                         {
-                            enabledFlag.SetActive(false);
-                            disabledFlag.SetActive(false);
+                            activityManager.DisableActivityEnablers();
                             activityToEnable.SetActive(true);
                             gameObject.SetActive(false);
                         }

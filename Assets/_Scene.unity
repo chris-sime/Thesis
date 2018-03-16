@@ -578,6 +578,9 @@ MonoBehaviour:
   Activites:
   - {fileID: 1084518635}
   - {fileID: 1347765954}
+  ActivityEnablers:
+  - {fileID: 849487061}
+  - {fileID: 1005600467}
 --- !u!1 &128881923
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,6 +2307,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8add5bec6f44fa14a9176094694d9420, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &849487061 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1046333623006722, guid: 8add5bec6f44fa14a9176094694d9420,
+    type: 2}
+  m_PrefabInternal: {fileID: 849487060}
 --- !u!1 &880530568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,6 +2683,11 @@ Prefab:
 --- !u!4 &1005600466 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4740477198058212, guid: 8add5bec6f44fa14a9176094694d9420,
+    type: 2}
+  m_PrefabInternal: {fileID: 1005600465}
+--- !u!1 &1005600467 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1046333623006722, guid: 8add5bec6f44fa14a9176094694d9420,
     type: 2}
   m_PrefabInternal: {fileID: 1005600465}
 --- !u!114 &1055853774 stripped

@@ -10,6 +10,8 @@ public class ActivityManager : MonoBehaviour {
     [SerializeField]
     private GameObject[] Activites;
 
+    [SerializeField]
+    private GameObject[] ActivityEnablers;
 
 	void Start () {
         foreach (var activity in Activites)
@@ -27,5 +29,13 @@ public class ActivityManager : MonoBehaviour {
     public void SetActivityCompleted(int activityCompleted)
     {
         if (activityCompleted > PlayerPrefs.GetInt("Activity")) PlayerPrefs.SetInt("Activity", activityCompleted);
+    }
+    
+    public void DisableActivityEnablers()
+    {
+        foreach (var activityEnabler in ActivityEnablers)
+        {
+            activityEnabler.SetActive(false);
+        }
     }
 }
