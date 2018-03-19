@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Interactable : MonoBehaviour {
+public class Interactable : MonoBehaviour
+{
 
     [SerializeField]
     protected string objectName;
@@ -13,5 +14,5 @@ public class Interactable : MonoBehaviour {
     protected string objectInfo;
 
     [SerializeField]
-    protected bool isCorrectAnswer = true;
+    protected bool isCorrectAnswer;
 }

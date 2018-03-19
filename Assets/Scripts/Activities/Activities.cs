@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Activities : MonoBehaviour {
+public class Activities : MonoBehaviour
+{
 
     [Header("Info Panel")]
     public GameObject InfoPanel;
@@ -12,7 +13,7 @@ public class Activities : MonoBehaviour {
     [Header("Prompt Panel")]
     public GameObject PromptPanel;
     public GameObject OkButton;
-    [TextArea][SerializeField] protected string[] Prompts;
+    [TextArea] [SerializeField] protected string[] Prompts;
 
     [Space]
     [Header("Activity Objects")]
@@ -23,8 +24,10 @@ public class Activities : MonoBehaviour {
     protected ToggleEnable continueButtonEnabler;
     protected ToggleEnable closeButtonEnabler;
 
+    //REMOVE
     protected ToggleEnable promptPanelEnabler;
     protected ToggleEnable okButtonEnabler;
+    //
 
     protected ActivityManager activityManager;
     protected string promptInfo;

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragAndDropObject : Interactable {
+public class DragAndDropObject : Interactable
+{
 
     Vector3 startingPosition;
     public GameObject planeDragHelper;
@@ -18,12 +19,13 @@ public class DragAndDropObject : Interactable {
     LayerMask layerMask = 1 << 8;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         startingPosition = transform.position;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         DragObject();
         ShowName();
@@ -42,7 +44,7 @@ public class DragAndDropObject : Interactable {
             }
             if (objectHit == planeDragHelper.transform)
             {
-                UIManager.instance.HideNameHeader();      
+                UIManager.instance.HideNameHeader();
             }
         }
     }
@@ -99,7 +101,7 @@ public class DragAndDropObject : Interactable {
                 {
                     UIManager.instance.ShowInfoPanel(objectName, objectInfo, isCorrectAnswer);
                 }
-                else if(isDraging)
+                else if (isDraging)
                 {
                     isDraging = false;
                     transform.position = startingPosition;

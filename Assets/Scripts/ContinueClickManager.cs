@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContinueClickManager : MonoBehaviour {
+public class ContinueClickManager : MonoBehaviour
+{
 
-	public void NextPhase()
+    public void NextPhase()
     {
-        if (PlayerPrefs.GetInt("Activity") == 0) FindObjectOfType<FirstActivity>().OnClickInfoPanelButton();
-        else if (PlayerPrefs.GetInt("Activity") == 1) FindObjectOfType<SecondActivity>().OnClickInfoPanelButton();
+        if (PlayerPrefs.GetInt("CurrentActivity") == 0) {
+            Debug.Log("Current Activity: " + PlayerPrefs.GetInt("CurrentActivity") + " CONTINUE BUTTON CLICKED");
+            FindObjectOfType<FirstActivity>().OnClickInfoPanelButton();
+        }       
+        else if (PlayerPrefs.GetInt("CurrentActivity") == 1) FindObjectOfType<SecondActivity>().OnClickInfoPanelButton();
     }
 }

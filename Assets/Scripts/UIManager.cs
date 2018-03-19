@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
     [Header("INFO PANEL")]
     public ToggleEnable infoPanel;
@@ -39,9 +40,10 @@ public class UIManager : MonoBehaviour {
 
 
     public static UIManager instance = null;
-    void Awake() {
+    void Awake()
+    {
         if (instance == null) instance = this;
-        else if (instance != this) Destroy(gameObject);
+        //else if (instance != this) Destroy(gameObject);
         //DontDestroyOnLoad(gameObject);
     }
 
@@ -67,7 +69,9 @@ public class UIManager : MonoBehaviour {
     {
         indicator.fillAmount = currentTime / timeToFill;
     }
-    public void ResetIndicator(){
+
+    public void ResetIndicator()
+    {
         indicator.fillAmount = 0;
     }
 
@@ -79,6 +83,7 @@ public class UIManager : MonoBehaviour {
         closeButton.enabled = true;
         if (isCorrect)
         {
+            Debug.Log("ContinueButton is Enabled");
             continueButton.enabled = true;
         }
         infoPanel.Enable();

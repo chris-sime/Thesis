@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragableObject : Interactable {
+public class DragableObject : Interactable
+{
 
     Vector3 startingPosition;
     public GameObject planeDragHelper;
@@ -10,17 +11,16 @@ public class DragableObject : Interactable {
     RaycastHit hit;
 
     int trailCountHelper = 0;
-    //[SerializeField]
-    //private GameObject dropArea;
 
     bool isDraging = false;
     bool isDroppedinCorrectArea = false;
     bool hasStartedTheTrail = false;
 
     LayerMask layerMask = 1 << 8;
-    
-    
-    void Start () {
+
+
+    void Start()
+    {
         startingPosition = transform.position;
     }
 
@@ -52,7 +52,8 @@ public class DragableObject : Interactable {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         DragObject();
     }
 
@@ -103,7 +104,7 @@ public class DragableObject : Interactable {
                     }
                     else
                     {
-                        if(trailCountHelper > 0)
+                        if (trailCountHelper > 0)
                         {
                             isDraging = false;
                             transform.position = startingPosition;
@@ -112,7 +113,7 @@ public class DragableObject : Interactable {
                     }
                 }
             }
-            if((Input.GetTouch(i).phase == TouchPhase.Ended))
+            if ((Input.GetTouch(i).phase == TouchPhase.Ended))
             {
                 isDraging = false;
                 transform.position = startingPosition;

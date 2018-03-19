@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ActivityManager : MonoBehaviour {
+public class ActivityManager : MonoBehaviour
+{
 
 
     [SerializeField]
@@ -13,7 +14,8 @@ public class ActivityManager : MonoBehaviour {
     [SerializeField]
     private GameObject[] ActivityEnablers;
 
-	void Start () {
+    void Start()
+    {
         foreach (var activity in Activites)
         {
             activity.SetActive(false);
@@ -28,9 +30,9 @@ public class ActivityManager : MonoBehaviour {
 
     public void SetActivityCompleted(int activityCompleted)
     {
-        if (activityCompleted > PlayerPrefs.GetInt("Activity")) PlayerPrefs.SetInt("Activity", activityCompleted);
+        if (activityCompleted > PlayerPrefs.GetInt("ActivitiesCompleted")) PlayerPrefs.SetInt("ActivitiesCompleted", activityCompleted);
     }
-    
+
     public void DisableActivityEnablers()
     {
         foreach (var activityEnabler in ActivityEnablers)

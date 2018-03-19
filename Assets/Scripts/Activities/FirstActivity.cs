@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FirstActivity : Activities {
+public class FirstActivity : Activities
+{
 
     bool PhiliposCompleted = false;
     bool FalagaCompleted = false;
     bool ChearoneaCompleted = false;
 
-   
+
     public void SetPhiliposCompleted() { PhiliposCompleted = true; }
     public void SetFalagaCompleted() { FalagaCompleted = true; }
     public void SetChearoneaCompleted() { ChearoneaCompleted = true; }
@@ -18,7 +19,6 @@ public class FirstActivity : Activities {
     {
         ShowPrompts();
     }
-
 
     public void OnClickInfoPanelButton()
     {
@@ -39,18 +39,18 @@ public class FirstActivity : Activities {
             SetChearoneaCompleted();
             ShowPrompts();
         }
-        
-    }
-    
-    //Probably remove later
-    public void OnClickPromptPanelButton()
-    {
-        promptPanelEnabler.Disable();
-        okButtonEnabler.Disable();
+
     }
 
+    ////Probably remove later
+    //public void OnClickPromptPanelButton()
+    //{
+    //    promptPanelEnabler.Disable();
+    //    okButtonEnabler.Disable();
+    //}
+
     private void Update()
-    { 
+    {
         ProgressActivity();
     }
 
@@ -102,7 +102,7 @@ public class FirstActivity : Activities {
             GameObjects[6].SetActive(false);  //Florina
             //Move Falagga to Chearonea position
             GameObjects[2].transform.position = Vector3.Lerp(GameObjects[2].transform.position, GameObjects[4].transform.position, Time.deltaTime * 10);
-            if(GameObjects[2].transform.position == GameObjects[4].transform.position)
+            if (GameObjects[2].transform.position == GameObjects[4].transform.position)
             {
                 activityManager.SetActivityCompleted(1);
                 UIManager.instance.ShowVictoryScreen();

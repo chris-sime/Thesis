@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondActivity : Activities {
+public class SecondActivity : Activities
+{
 
     bool MacedonianTulumusCompleted = false;
     bool PhiliposIsDropedInTulumusCompleted = false;
     bool FollowPathToMiezaCompleted = false;
-
 
     public void SetMacedonianTulumusCompleted() { MacedonianTulumusCompleted = true; }
     public void SetPhiliposIsDropedInTulumusCompleted() { PhiliposIsDropedInTulumusCompleted = true; }
@@ -37,15 +37,15 @@ public class SecondActivity : Activities {
             SetFollowPathToMiezaCompleted();
             ShowPrompts();
         }
-        
+
     }
 
-    //Probably remove later
-    public void OnClickPromptPanelButton()
-    {
-        promptPanelEnabler.Disable();
-        okButtonEnabler.Disable();
-    }
+    ////Probably remove later
+    //public void OnClickPromptPanelButton()
+    //{
+    //    promptPanelEnabler.Disable();
+    //    okButtonEnabler.Disable();
+    //}
 
     private void Update()
     {
@@ -81,7 +81,7 @@ public class SecondActivity : Activities {
             GameObjects[2].SetActive(true);  //Darios
             GameObjects[3].SetActive(true);  //Aristotelis
             GameObjects[0].GetComponent<PopUpObjectInfo>().enabled = false;
-            
+
         }
         if (PhiliposIsDropedInTulumusCompleted)
         {
@@ -89,7 +89,7 @@ public class SecondActivity : Activities {
             GameObjects[0].SetActive(false);  //Makedonikos tafos
             GameObjects[1].SetActive(false);  //Philipos
             GameObjects[2].SetActive(false);  //Darios
-            
+
             GameObjects[3].transform.position = GameObjects[4].transform.position; //Set Aristotelis position at Mieza
             GameObjects[5].SetActive(true); //Trail to Mieza
             GameObjects[6].SetActive(true); //Alexander
@@ -102,7 +102,7 @@ public class SecondActivity : Activities {
             UIManager.instance.ShowVictoryScreen();
 
         }
-        
+
     }
 
     IEnumerator ShowPromptAfterSeconds(float sec)

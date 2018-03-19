@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivityEnabler : MonoBehaviour {
+public class ActivityEnabler : MonoBehaviour
+{
 
     [SerializeField] GameObject activityToEnable;
     [SerializeField] int activityIdToEnable;
     [Space]
-    [SerializeField] GameObject enabledFlag;
+    [SerializeField]
+    GameObject enabledFlag;
     [SerializeField] GameObject disabledFlag;
-    
+
 
     Transform objectHit;
     RaycastHit hit;
@@ -18,7 +20,7 @@ public class ActivityEnabler : MonoBehaviour {
     void Start()
     {
         activityManager = FindObjectOfType<ActivityManager>();
-        if (activityIdToEnable <= PlayerPrefs.GetInt("Activity"))
+        if (activityIdToEnable <= PlayerPrefs.GetInt("ActivitiesCompleted"))
         {
             enabledFlag.SetActive(true);
             disabledFlag.SetActive(false);
@@ -48,9 +50,9 @@ public class ActivityEnabler : MonoBehaviour {
                         //You can start the activity
                         if (enabledFlag.activeSelf)
                         {
-                            activityManager.DisableActivityEnablers();
+                            PlayerPrefs.SetInt("CurrentActivity", activityIdToEnable);
                             activityToEnable.SetActive(true);
-                            gameObject.SetActive(false);
+                            activityManager.DisableActivityEnablers();
                         }
                         //You are unable to start the activity
                         else
@@ -64,5 +66,5 @@ public class ActivityEnabler : MonoBehaviour {
         }
     }
 
-    
+
 }
