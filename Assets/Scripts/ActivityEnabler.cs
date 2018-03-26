@@ -34,6 +34,28 @@ public class ActivityEnabler : MonoBehaviour
 
     private void Update()
     {
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        //You can start the activity
+        //        if (enabledFlag.activeSelf)
+        //        {
+        //            PlayerPrefs.SetInt("CurrentActivity", activityIdToEnable);
+        //            activityToEnable.SetActive(true);
+        //            activityManager.DisableActivityEnablers();
+        //        }
+        //        //You are unable to start the activity
+        //        else
+        //        {
+        //            Debug.Log("you are unable to start this activity");
+        //            //Throw visual feedback msgs "you are unable to start this activity"
+        //        }
+        //    }
+        //}
+
         for (var i = 0; i < Input.touchCount; ++i)
         {
             if (Input.GetTouch(i).phase == TouchPhase.Began)
