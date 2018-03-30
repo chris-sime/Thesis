@@ -15,7 +15,7 @@ public class FirstActivity : Activities
     public void SetFalagaCompleted() { FalagaCompleted = true; }
     public void SetChearoneaCompleted() { ChearoneaCompleted = true; }
 
-    private void OnEnable()
+    private void Start()
     {
         ShowPrompts();
     }
@@ -23,7 +23,6 @@ public class FirstActivity : Activities
     public void OnClickInfoPanelButton()
     {
         UIManager.instance.HideInfoPanel();
-
         if (!PhiliposCompleted)
         {
             SetPhiliposCompleted();
@@ -39,15 +38,7 @@ public class FirstActivity : Activities
             SetChearoneaCompleted();
             ShowPrompts();
         }
-
     }
-
-    ////Probably remove later
-    //public void OnClickPromptPanelButton()
-    //{
-    //    promptPanelEnabler.Disable();
-    //    okButtonEnabler.Disable();
-    //}
 
     private void Update()
     {
@@ -56,6 +47,7 @@ public class FirstActivity : Activities
 
     private void ShowPrompts()
     {
+        Debug.Log("ShowPrompts");
         if (!PhiliposCompleted)
         {
             promptInfo = Prompts[0];

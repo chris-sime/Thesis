@@ -25,32 +25,29 @@ public class QuestionQuiz : MonoBehaviour
     
     public void CorrectAnswer()
     {
-        if(NumberOfQuestionsToShow.Count <= 0)
+        int r = Random.Range(0, NumberOfQuestionsToShow.Count);
+        NumberOfQuestionsToShow[r].SetActive(false);
+        NumberOfQuestionsToShow.RemoveAt(r);
+        Questions[rng].SetActive(false);
+        Questions.RemoveAt(rng);
+        if (NumberOfQuestionsToShow.Count <= 0)
         {
             UIManager.instance.ShowInfoPanel("Συγχαρητήρια!", "Κατάφερες να νικήσεις τον στρατό του Δαριού", true);
         }
         else
-        {
-            int r = Random.Range(0, NumberOfQuestionsToShow.Count);
-            NumberOfQuestionsToShow[r].SetActive(false);
-            NumberOfQuestionsToShow.RemoveAt(r);
-            Questions[rng].SetActive(false);
-            Questions.RemoveAt(rng);
+        { 
             PickNextQuestion();
         }
     }
 
     public void WrongAnswer()
     {
-        if(Tries.Count <= 0)
+        int r = Random.Range(0, Tries.Count);
+        Tries[r].SetActive(false);
+        Tries.RemoveAt(r);
+        if (Tries.Count <= 0)
         {
             UIManager.instance.ShowInfoPanel("Ωχ, όχι!", "Δε κατάφερες να νικήσεις τον Δάριο σε αυτήν τη μάχη", true);
-        }
-        else
-        {
-            int r = Random.Range(0, Tries.Count);
-            Tries[r].SetActive(false);
-            Tries.RemoveAt(r);
         }
     }
     public void PickNextQuestion()
