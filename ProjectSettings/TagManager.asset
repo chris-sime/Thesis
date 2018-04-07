@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DropArea
   - Trail
+  - Wood
+  - Rock
   layers:
   - Default
   - TransparentFX
